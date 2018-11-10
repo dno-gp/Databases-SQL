@@ -23,4 +23,10 @@ valor decimal(10,2),
 foreign key (municipio) references municipios(idmunic)
 )charset = 'utf8';
 
+-- Importando dados a partir de um arquivo
+/*Arquivo baixado do site do Tesouro Nacional*/
 
+load data infile 'aquivo.csv' into table transferencias
+fields terminated by ';' enclosed by '"'
+ignore 1 lines
+(uf, municipios, ano, mes, transferencia, valar);
