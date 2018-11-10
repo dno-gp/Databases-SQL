@@ -1,11 +1,13 @@
-/*FPM-MRSAPE*/
+/****************************
+ **FPM-Microrregião Sapé-PB**
+ ****************************/
+-- 
 
 create database fpmmrsape /*nome do banco*/;
-
--- Selecionar o banco de dados 
+-- Selecionando o banco de dados 
 use fpmmrsape;
 
--- Criar tabelas
+-- Criando as tabelas
 create table municipios(
 idmunic int(1) auto_increment primary key,
 municipio varchar(45) not null,
@@ -23,10 +25,15 @@ valor decimal(10,2),
 foreign key (municipio) references municipios(idmunic)
 )charset = 'utf8';
 
--- Importando dados a partir de um arquivo
-/*Arquivo baixado do site do Tesouro Nacional*/
+-- Adicionando os municípios - Microrregião Sapé
+insert into municipios (municipio) 
+values("Cruz do Espírito Santo"), ("Juripiranga"),("Mari"),
+("Pilar"), ("Riachão do Poço"), ("São José dos Ramos"), 
+("São Miguel de Taipu"), ("Sapé"), ("Sobrado");
 
-load data infile 'aquivo.csv' into table transferencias
+-- Importando dados a partir de um arquivo - Transferências Constitucionais obrigatórias
+-- Arquivo baixado do site do Tesouro Nacional
+load data infile '/var/lib/mysql-files/transferencias.csv' into table transferencias
 fields terminated by ';' enclosed by '"'
 ignore 1 lines
-(uf, municipios, ano, mes, transferencia, valar);
+(uf, municipio, ano, mes, transferencia, valor);
