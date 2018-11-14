@@ -21,6 +21,11 @@ try:
         c.execute(sqlano)
         ano = c.fetchall()
 
+        #Consulta municipios em loop
+        for i in range(1,10):
+            sql1 = 'select sum(valor) from transferencias where municipio = %s'
+            c.execute(sql1, (i))
+             
 except:
     print("Erro de consulta.")
 
